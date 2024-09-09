@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una implementación de una API que proporciona información sobre Pokémon utilizando PHP. La API permite obtener datos de los Pokémon, incluyendo sus características principales como nombre, tipo, altura y peso. Está diseñado para ser utilizado como un ejemplo de cómo crear, implementar y consumir una API utilizando PHP puro.
+Este proyecto es una implementación de una API que proporciona información sobre Pokémon. La API permite obtener datos de los Pokémon, incluyendo sus características principales como nombre, tipo, altura y peso. Está diseñado para ser utilizado como un ejemplo de cómo crear, implementar y consumir una API utilizando PHP.
 
 ## Características
 
