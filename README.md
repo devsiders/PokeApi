@@ -23,13 +23,13 @@ Este proyecto es una implementación de una API que proporciona información sob
 
 Aquí puedes ver la interfaz principal de la API.
 
-![pokeapi infinityfreeapp com_](https://github.com/user-attachments/assets/07cae51f-aae0-40d9-a373-5ad5ff5fdc6e)
+![pokeapi infinityfreeapp com_index php](https://github.com/user-attachments/assets/d662fe39-8771-4812-b71f-3f1c948b485e)
 
 ### 2. Resultado de Búsqueda de Pokémon
 
 Ejemplo de cómo se muestra la información de un Pokémon cuando se encuentra en la base de datos.
 
-![pokeapi infinityfreeapp com_index php_search=Pikachu](https://github.com/user-attachments/assets/54f8ceb6-0a05-4f2e-a31d-d7c31d304ac8)
+![pokeapi infinityfreeapp com_index php_search=Lucario](https://github.com/user-attachments/assets/c0357d7b-2024-4e68-9b1b-0e43c9eded8d)
 
 ## Instalación
 
