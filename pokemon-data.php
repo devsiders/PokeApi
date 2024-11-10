@@ -1,5 +1,4 @@
 <?php
-// pokemon_data.php
 
 // Mapa de colores para los tipos de Pokémon
 $typeColors = [
@@ -19,7 +18,30 @@ $typeColors = [
     'normal' => 'secondary'
 ];
 
+// Mapa de traducción de tipos de Pokémon a español
+$typeTranslations = [
+    'grass' => 'Planta',
+    'fire' => 'Fuego',
+    'water' => 'Agua',
+    'electric' => 'Eléctrico',
+    'psychic' => 'Psíquico',
+    'ice' => 'Hielo',
+    'dragon' => 'Dragón',
+    'fairy' => 'Hada',
+    'bug' => 'Bicho',
+    'rock' => 'Roca',
+    'ghost' => 'Fantasma',
+    'steel' => 'Acero',
+    'flying' => 'Volador',
+    'normal' => 'Normal',
+    'poison' => 'Veneno',
+    'ground' => 'Tierra',
+    'fighting' => 'Lucha',
+    'dark' => 'Siniestro'
+];
+
 function fetchPokemonData($search) {
+    $search = strtolower($search);
     $apiUrl = 'https://pokeapi.co/api/v2/pokemon/' . $search;
     $ch = curl_init($apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -28,7 +50,7 @@ function fetchPokemonData($search) {
     return json_decode($response, true);
 }
 
-function renderPokemonCard($data, $typeColors) {
+function renderPokemonCard($data, $typeColors, $typeTranslations) {
     $imageUrl = $data['sprites']['front_default'];
     echo '<div class="col-md-3">';
     echo '<div class="card pokemon-card">';
@@ -38,10 +60,13 @@ function renderPokemonCard($data, $typeColors) {
     echo '<div class="card-body">';
     echo '<h5 class="card-title text-center">' . ucfirst($data['name']) . '</h5>';
     echo '<div class="d-flex flex-wrap justify-content-center">';
+
     foreach ($data['types'] as $typeData) {
         $type = $typeData['type']['name'];
         $class = 'type-' . $type;
-        echo '<span class="badge ' . $class . ' text-light m-1">' . ucfirst($type) . '</span>';
+
+        $typeName = isset($typeTranslations[$type]) ? $typeTranslations[$type] : ucfirst($type);
+        echo '<span class="badge ' . $class . ' text-light m-1">' . $typeName . '</span>';
     }
     echo '</div>';
     echo '<p class="card-text">Altura: ' . $data['height'] . ' m</p>';
@@ -58,7 +83,7 @@ if (isset($_GET['search'])) {
     $data = fetchPokemonData($search);
 
     if (isset($data['sprites']['front_default'])) {
-        renderPokemonCard($data, $typeColors);
+        renderPokemonCard($data, $typeColors, $typeTranslations);
     } else {
         $nombreImagen = "pokemon.jpg";
         $altura = 250;
@@ -66,7 +91,7 @@ if (isset($_GET['search'])) {
         echo '<div class="container text-center">';
         echo "<img src='$rutaImagen' width='$altura' alt='Mi Imagen'>";
         echo "<p>No hay datos disponible.</p>";
-        echo "<a href='pokemon.php' class='btn btn-danger'><i class='bi bi-arrow-left'></i></a>";
+        echo "<a href='index.php' class='btn btn-danger'><i class='bi bi-arrow-left'></i></a>";
         echo '</div>';
     }
 } else {
@@ -80,7 +105,7 @@ if (isset($_GET['search'])) {
     foreach ($data['results'] as $pokemon) {
         $pokemonDetails = file_get_contents($pokemon['url']);
         $pokemonInfo = json_decode($pokemonDetails, true);
-        renderPokemonCard($pokemonInfo, $typeColors);
+        renderPokemonCard($pokemonInfo, $typeColors, $typeTranslations);
     }
 }
 ?>
